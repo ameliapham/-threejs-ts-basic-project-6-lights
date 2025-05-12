@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import GUI from 'lil-gui'
 
 console.log("Hello, Three.js with TypeScript!");
 
@@ -47,11 +48,14 @@ plane.rotation.x = -(Math.PI/2)
 scene.add(plane)
 
 // --- Lights ----
+// Ambient Light
 const ambientLight = new THREE.AmbientLight(0xffffff, 1)
 scene.add(ambientLight)
 
-const pointLight = new THREE.PointLight(0xffffff, 1)
-scene.add(pointLight)
+// --- Debug UI ---
+const gui = new GUI
+gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01)
+
 
 // --- Camera Setup ---
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight);
