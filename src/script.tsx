@@ -10,12 +10,12 @@ const canvas = document.querySelector("canvas.webgl") as HTMLCanvasElement;
 const scene = new THREE.Scene();
 
 // --- Setup Axes Helper ---
-const axesHelper = new THREE.AxesHelper(2)
-scene.add(axesHelper)
+// const axesHelper = new THREE.AxesHelper(2)
+// scene.add(axesHelper)
 
 // --- Objects ---
 const material = new THREE.MeshStandardMaterial({
-    //color : "red"
+    roughness : 0.1
 })
 
 const sphere = new THREE.Mesh(
@@ -75,7 +75,20 @@ window.addEventListener("resize", () => {
 })
 
 // --- Render Loop ---
+let clock = new THREE.Clock()
+
 function animate(){
+    // Clock
+    const eslapsedTime = clock.getElapsedTime()
+
+    // Animation
+    sphere.rotation.x = 0.1 * eslapsedTime
+    cube.rotation.x = 0.1 * eslapsedTime
+    donut.rotation.x = 0.1 * eslapsedTime
+    sphere.rotation.y = - 0.15 * eslapsedTime
+    cube.rotation.y = - 0.15 * eslapsedTime
+    donut.rotation.y = - 0.15 * eslapsedTime
+
     controls.update()
     renderer.render(scene, camera);
     window.requestAnimationFrame(animate)
