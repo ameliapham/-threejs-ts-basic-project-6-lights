@@ -13,9 +13,49 @@ const scene = new THREE.Scene();
 const axesHelper = new THREE.AxesHelper(2)
 scene.add(axesHelper)
 
+// --- Objects ---
+const material = new THREE.MeshStandardMaterial({
+    //color : "red"
+})
+
+const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(0.5, 32, 16, 0),
+    material
+)
+sphere.position.x = -3
+scene.add(sphere)
+
+const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(1,1),
+    material
+)
+scene.add(cube)
+
+const donut = new THREE.Mesh(
+    new THREE.TorusGeometry(0.5, 0.3, 12, 48),
+    material
+)
+donut.position.x = 3
+scene.add(donut)
+
+const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(12, 12),
+    material
+)
+plane.position.y = -2
+plane.rotation.x = -(Math.PI/2)
+scene.add(plane)
+
+// --- Lights ----
+const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+scene.add(ambientLight)
+
+const pointLight = new THREE.PointLight(0xffffff, 1)
+scene.add(pointLight)
+
 // --- Camera Setup ---
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight);
-camera.position.z = 3
+camera.position.z = 5
 scene.add(camera)
 
 // --- Controls ---
