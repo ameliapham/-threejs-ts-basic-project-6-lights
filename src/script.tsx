@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import GUI from 'lil-gui'
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper" 
 
 console.log("Hello, Three.js with TypeScript!");
 
@@ -63,6 +64,7 @@ scene.add(hemisphereLight)
 
 // Point Light
 const pointLight = new THREE.PointLight("yellow", 3)
+pointLight.position.y = 2
 scene.add(pointLight)
 
 // Rect Area Light
@@ -78,6 +80,15 @@ scene.add(spotLight)
 
 spotLight.target.position.x = 2.75
 scene.add(spotLight.target)
+
+// --- Light Helpers ---
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2)
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2)
+const spotLightHelper = new THREE.SpotLightHelper(spotLight, 0.2)
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight)
+
+scene.add(hemisphereLightHelper, directionalLightHelper, pointLightHelper, spotLightHelper, rectAreaLightHelper)
 
 // --- Debug UI ---
 const gui = new GUI
