@@ -57,10 +57,15 @@ const directionalLight = new THREE.DirectionalLight("pink", 1)
 directionalLight.position.set(1, 0.25, 0)
 scene.add(directionalLight)
 
+// Hemisphere Light
+const hemisphereLight = new THREE.HemisphereLight("red", "blue", 1)
+scene.add(hemisphereLight)
+
 // --- Debug UI ---
 const gui = new GUI
 gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01).name("Ambient Light Intensity")
 gui.add(directionalLight, 'intensity').min(0).max(1).step(0.01).name("Directional Light Intensity")
+gui.add(hemisphereLight, 'intensity').min(0).max(1).step(0.01).name("Hemisphere Light Intensity")
 
 // --- Camera Setup ---
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight);
